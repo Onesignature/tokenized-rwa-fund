@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LandingHeader } from "@/components/LandingHeader";
 
 export default function LandingPage() {
   return (
@@ -21,36 +22,7 @@ export default function LandingPage() {
         }}
       />
 
-      {/* Top bar */}
-      <header className="relative z-10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-5 sm:px-6 sm:py-6">
-          <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-gold-200 to-gold-500 shadow-glow">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="#1A1006">
-                <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.236L18 8v8l-6 3.764L6 16V8l6-3.764z" />
-                <circle cx="12" cy="12" r="2.5" />
-              </svg>
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-[14px] font-semibold tracking-tight text-fg sm:text-[15px]">
-                Tokenized RWA Fund
-              </span>
-              <span className="kbd-label hidden text-fg-faint sm:inline">MVP</span>
-            </div>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Link
-              href="/simulate"
-              className="btn-secondary !py-2 hidden sm:inline-flex"
-            >
-              Try the demo
-            </Link>
-            <Link href="/app" className="btn-primary !py-2 text-sm">
-              Launch app →
-            </Link>
-          </div>
-        </div>
-      </header>
+      <LandingHeader />
 
       {/* Hero */}
       <section className="relative z-10">
@@ -97,7 +69,7 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="relative z-10 border-t border-line bg-bg-surface/40">
+      <section id="how-it-works" className="relative z-10 scroll-mt-24 border-t border-line bg-bg-surface/40">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
             <div className="kbd-label text-gold">How it works</div>
@@ -135,7 +107,7 @@ export default function LandingPage() {
       </section>
 
       {/* Exit paths */}
-      <section className="relative z-10">
+      <section id="exit-paths" className="relative z-10 scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
             <div className="kbd-label text-gold">Exit paths</div>
@@ -162,7 +134,7 @@ export default function LandingPage() {
       </section>
 
       {/* Stack */}
-      <section className="relative z-10 border-t border-line bg-bg-surface/40">
+      <section id="engineering" className="relative z-10 scroll-mt-24 border-t border-line bg-bg-surface/40">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
             <div>
