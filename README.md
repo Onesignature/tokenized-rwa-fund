@@ -8,7 +8,7 @@
 [![Tests](https://img.shields.io/badge/tests-42%20passing-emerald)](./contracts/test)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.24-grey)](./contracts/contracts)
 [![Next.js](https://img.shields.io/badge/Next.js-14-grey)](./frontend)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FOnesignature%2Frwa-tokenized-fund&root-directory=frontend&project-name=tokenized-rwa-fund&repository-name=tokenized-rwa-fund)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FOnesignature%2Ftokenized-rwa-fund&root-directory=frontend&project-name=tokenized-rwa-fund&repository-name=tokenized-rwa-fund)
 
 </div>
 
