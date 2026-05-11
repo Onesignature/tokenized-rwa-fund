@@ -7,8 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-amber)](./LICENSE)
 [![Tests](https://img.shields.io/badge/tests-42%20passing-emerald)](./contracts/test)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.24-grey)](./contracts/contracts)
-[![Next.js](https://img.shields.io/badge/Next.js-14-grey)](./frontend)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FOnesignature%2Ftokenized-rwa-fund&root-directory=frontend&project-name=tokenized-rwa-fund&repository-name=tokenized-rwa-fund)
+[![Next.js](https://img.shields.io/badge/Next.js-14-grey)](./app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FOnesignature%2Ftokenized-rwa-fund&project-name=tokenized-rwa-fund&repository-name=tokenized-rwa-fund)
 
 </div>
 
@@ -72,15 +72,15 @@ npm test            # 42 passing
 npm run node                                # terminal A
 npm run deploy:local                        # terminal B
 
-# 3. Run the frontend
-cd ../frontend
+# 3. Run the frontend (from repo root)
+cd ..
 cp .env.example .env.local
 npm install
 npm run dev
 # → http://localhost:3000
 ```
 
-The deploy script writes contract addresses to `frontend/lib/deployment.json` automatically, so the frontend picks them up without manual wiring.
+The deploy script writes contract addresses to `lib/deployment.json` automatically, so the frontend picks them up without manual wiring.
 
 ## Repository layout
 
@@ -92,14 +92,15 @@ The deploy script writes contract addresses to `frontend/lib/deployment.json` au
 │   │                              Treasury, SubscriptionManager, RedemptionManager
 │   ├── test/                    ← unit + Lifecycle integration tests
 │   └── scripts/                 ← deploy.ts, demo-cycle.ts
-├── frontend/                    ← Next.js 14 app (App Router)
-│   ├── app/
-│   │   ├── page.tsx             ← landing page
-│   │   ├── app/                 ← live dashboard, subscribe, redeem
-│   │   └── simulate/            ← simulation dashboard + guided tour
-│   ├── components/              ← NavHero, PositionCard, ActivityFeed, AdminPanel, TourGuide, …
-│   ├── contexts/                ← LiveFundProvider + SimulatedFundProvider (unified FundContext)
-│   └── hooks/                   ← useFund, useTourSpotlight
+├── app/                         ← Next.js 14 (App Router)
+│   ├── page.tsx                 ← landing page
+│   ├── app/                     ← live dashboard, subscribe, redeem
+│   └── simulate/                ← simulation dashboard + guided tour
+├── components/                  ← NavHero, PositionCard, ActivityFeed, AdminPanel, TourGuide, …
+├── contexts/                    ← LiveFundProvider + SimulatedFundProvider (unified FundContext)
+├── hooks/                       ← useFund, useTourSpotlight
+├── lib/                         ← abis, format, deployment.json, wagmi config
+├── package.json                 ← Next.js app dependencies
 ├── LIMITATIONS.md               ← honest audit of what the MVP does and does not handle
 └── README.md                    ← you are here
 ```
@@ -174,14 +175,13 @@ sequenceDiagram
 
 Full numeric walk-through in [`docs/04-token-lifecycle.md`](./docs/04-token-lifecycle.md).
 
-## Deploy to Vercel (frontend)
+## Deploy to Vercel
 
-The frontend is configured for one-click Vercel deploy.
+The Next.js app lives at the repo root, so Vercel auto-detects it. No special configuration needed.
 
 1. Click the **Deploy with Vercel** button at the top of this README (or fork + import manually)
-2. When prompted for **Root Directory**, set it to `frontend`
-3. No environment variables required for the simulation to work — `/simulate` runs entirely in the browser
-4. After deploy, visit `https://your-app.vercel.app/simulate` to try the demo
+2. No environment variables required for the simulation to work — `/simulate` runs entirely in the browser
+3. After deploy, visit `https://your-app.vercel.app/simulate` to try the demo
 
 To make `/app` work on the deployed site you need to:
 
@@ -191,7 +191,7 @@ To make `/app` work on the deployed site you need to:
    cp .env.example .env       # fill SEPOLIA_RPC_URL + PRIVATE_KEY
    npm run deploy:sepolia
    ```
-2. Commit the regenerated `frontend/lib/deployment.json`
+2. Commit the regenerated `lib/deployment.json`
 3. Push — Vercel will redeploy automatically
 
 Until then, `/app` shows a banner pointing visitors to `/simulate`.

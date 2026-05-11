@@ -29,6 +29,7 @@ export function Header() {
 
   const tabs = [
     { href: `${basePath}`, label: "Dashboard" },
+    { href: `${basePath}/swap`, label: "Swap" },
     { href: `${basePath}/subscribe`, label: "Subscribe" },
     { href: `${basePath}/redeem`, label: "Redeem" },
   ];

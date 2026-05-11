@@ -314,6 +314,8 @@ export function LiveFundProvider({ children }: { children: ReactNode }) {
         minSubscription: minSubscription ?? 100n * 10n ** 6n,
         userUsdc,
         userTokens,
+        userEth: 0n,
+        ethPriceUsd: 2500,
         isKycd,
         allowance,
         positionUsd,

@@ -113,11 +113,11 @@ async function main() {
   fs.writeFileSync(outFile, JSON.stringify(deployment, null, 2));
   console.log(`\nAddresses written to: ${outFile}`);
 
-  // Also write a copy into the frontend so the UI picks it up without a manual step.
-  const frontendDir = path.resolve(__dirname, "..", "..", "frontend", "lib");
-  if (fs.existsSync(frontendDir)) {
-    fs.writeFileSync(path.join(frontendDir, "deployment.json"), JSON.stringify(deployment, null, 2));
-    console.log(`Addresses written to: ${path.join(frontendDir, "deployment.json")}`);
+  // Also write a copy into the Next.js app's lib/ so the UI picks it up without a manual step.
+  const frontendLibDir = path.resolve(__dirname, "..", "..", "lib");
+  if (fs.existsSync(frontendLibDir)) {
+    fs.writeFileSync(path.join(frontendLibDir, "deployment.json"), JSON.stringify(deployment, null, 2));
+    console.log(`Addresses written to: ${path.join(frontendLibDir, "deployment.json")}`);
   }
 
   console.log("\n✓ Deployment complete.\n");

@@ -49,6 +49,8 @@ export type FundState = {
   minSubscription: bigint;
   userUsdc: bigint;
   userTokens: bigint;
+  userEth: bigint;        // 18 decimals (wei). Live = wallet balance; simulate = local
+  ethPriceUsd: number;    // Constant for simulation conversion (e.g. 2500)
   isKycd: boolean;
   allowance: bigint;
   positionUsd: bigint;
@@ -67,6 +69,10 @@ export type FundActions = {
   resetSimulation?: () => void;
   quickStart?: () => void;
   openConnectModal?: () => void;
+  // ETH swaps (simulation only — virtual conversion at ethPriceUsd)
+  swapEthForTokens?: (ethAmount: bigint) => void;
+  swapTokensForEth?: (tokenAmount: bigint) => void;
+  faucetEth?: (amount: bigint) => void;
 };
 
 export type FundContextValue = {
