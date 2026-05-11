@@ -147,7 +147,7 @@ function Row({
   title2?: string;
 }) {
   return (
-    <div className="flex items-center gap-4 px-5 py-4 transition hover:bg-white/[0.02]">
+    <div className="flex items-center gap-3 px-4 py-3.5 transition hover:bg-white/[0.02] sm:gap-4 sm:px-5 sm:py-4">
       <div className="shrink-0">{icon}</div>
       <div className="min-w-0 flex-1">
         <div className="truncate text-sm text-fg">{title}</div>
@@ -155,7 +155,9 @@ function Row({
       </div>
       <div className="shrink-0 text-right">
         <div className="text-xs text-fg-subtle tabular">{time}</div>
-        {title2 && <div className="text-[10px] text-fg-faint">{title2}</div>}
+        {title2 && (
+          <div className="hidden text-[10px] text-fg-faint sm:block">{title2}</div>
+        )}
       </div>
     </div>
   );

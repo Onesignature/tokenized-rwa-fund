@@ -23,24 +23,29 @@ export default function LandingPage() {
 
       {/* Top bar */}
       <header className="relative z-10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-          <Link href="/" className="flex items-center gap-2.5">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-5 sm:px-6 sm:py-6">
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-gold-200 to-gold-500 shadow-glow">
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="#1A1006">
                 <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.236L18 8v8l-6 3.764L6 16V8l6-3.764z" />
                 <circle cx="12" cy="12" r="2.5" />
               </svg>
             </div>
-            <span className="text-[15px] font-semibold tracking-tight text-fg">
-              Tokenized RWA Fund
-            </span>
-            <span className="kbd-label text-fg-faint">MVP</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[14px] font-semibold tracking-tight text-fg sm:text-[15px]">
+                Tokenized RWA Fund
+              </span>
+              <span className="kbd-label hidden text-fg-faint sm:inline">MVP</span>
+            </div>
           </Link>
           <div className="flex items-center gap-2">
-            <Link href="/simulate" className="btn-secondary !py-2">
+            <Link
+              href="/simulate"
+              className="btn-secondary !py-2 hidden sm:inline-flex"
+            >
               Try the demo
             </Link>
-            <Link href="/app" className="btn-primary !py-2">
+            <Link href="/app" className="btn-primary !py-2 text-sm">
               Launch app →
             </Link>
           </div>
@@ -49,25 +54,31 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="relative z-10">
-        <div className="mx-auto max-w-6xl px-6 pb-12 pt-16 sm:pt-24">
+        <div className="mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-20 lg:pt-24">
           <div className="max-w-3xl">
-            <h1 className="display text-5xl leading-[1.05] text-fg sm:text-7xl">
+            <h1 className="display text-[40px] leading-[1.05] text-fg sm:text-5xl lg:text-7xl">
               Tokenized exposure to the
-              <br />
-              funds you trust.
+              <br className="hidden sm:inline" />
+              {" "}funds you trust.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted">
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:mt-6 sm:text-lg">
               A stablecoin-denominated fund token, backed 1:1 by units in an off-chain
               hedge fund. Token value tracks the fund's NAV. Subscribe in seconds, settle
               on-chain, redeem when ready.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Link href="/simulate" className="btn-primary !px-5 !py-3 text-base">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link
+                href="/simulate"
+                className="btn-primary !px-5 !py-3 text-center text-base"
+              >
                 Try the demo · no wallet needed
               </Link>
-              <Link href="/app" className="btn-secondary !px-5 !py-3 text-base">
+              <Link
+                href="/app"
+                className="btn-secondary !px-5 !py-3 text-center text-base"
+              >
                 Launch live app →
               </Link>
             </div>
@@ -75,10 +86,10 @@ export default function LandingPage() {
               The demo runs entirely in your browser. No keys, no testnet, no setup.
             </p>
 
-            <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-4 border-t border-line pt-8 sm:grid-cols-4">
+            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-8 sm:mt-12 sm:gap-x-8 sm:gap-y-4 sm:grid-cols-4">
               <KeyStat label="Settlement" value="On-chain" sub="seconds, not days" />
               <KeyStat label="Minimum" value="$100" sub="vs $100K institutional" />
-              <KeyStat label="Reach" value="Global" sub="anywhere you can hold USDC" />
+              <KeyStat label="Reach" value="Global" sub="anywhere you hold USDC" />
               <KeyStat label="Compliance" value="Allowlist" sub="institutional KYC" />
             </div>
           </div>
@@ -87,10 +98,10 @@ export default function LandingPage() {
 
       {/* How it works */}
       <section className="relative z-10 border-t border-line bg-bg-surface/40">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
             <div className="kbd-label text-gold">How it works</div>
-            <h2 className="display mt-3 text-3xl text-fg sm:text-4xl">
+            <h2 className="display mt-3 text-[28px] text-fg sm:text-4xl">
               One stack, three layers.
             </h2>
             <p className="mt-3 text-fg-muted">
@@ -125,10 +136,10 @@ export default function LandingPage() {
 
       {/* Exit paths */}
       <section className="relative z-10">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
             <div className="kbd-label text-gold">Exit paths</div>
-            <h2 className="display mt-3 text-3xl text-fg sm:text-4xl">
+            <h2 className="display mt-3 text-[28px] text-fg sm:text-4xl">
               Two ways out, both clean.
             </h2>
           </div>
@@ -152,11 +163,11 @@ export default function LandingPage() {
 
       {/* Stack */}
       <section className="relative z-10 border-t border-line bg-bg-surface/40">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
             <div>
               <div className="kbd-label text-gold">Engineering</div>
-              <h2 className="display mt-3 text-3xl text-fg sm:text-4xl">
+              <h2 className="display mt-3 text-[28px] text-fg sm:text-4xl">
                 Built like a financial product.
               </h2>
               <p className="mt-3 max-w-md text-fg-muted">
@@ -196,21 +207,27 @@ export default function LandingPage() {
 
       {/* CTA */}
       <section className="relative z-10 border-t border-line">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="overflow-hidden rounded-3xl border border-gold/20 bg-gradient-to-br from-gold/[0.08] via-transparent to-transparent p-10 sm:p-16">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+          <div className="overflow-hidden rounded-2xl border border-gold/20 bg-gradient-to-br from-gold/[0.08] via-transparent to-transparent p-6 sm:rounded-3xl sm:p-10 lg:p-16">
             <div className="max-w-2xl">
-              <h2 className="display text-4xl text-fg sm:text-5xl">
+              <h2 className="display text-3xl text-fg sm:text-4xl lg:text-5xl">
                 Take it for a spin.
               </h2>
               <p className="mt-4 text-fg-muted">
                 The live MVP runs on a local testnet. Connect a wallet, get test USDC,
                 subscribe, watch the NAV move, and redeem.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link href="/simulate" className="btn-primary !px-6 !py-3 text-base">
+              <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
+                <Link
+                  href="/simulate"
+                  className="btn-primary !px-6 !py-3 text-center text-base"
+                >
                   Try the demo
                 </Link>
-                <Link href="/app" className="btn-secondary !px-6 !py-3 text-base">
+                <Link
+                  href="/app"
+                  className="btn-secondary !px-6 !py-3 text-center text-base"
+                >
                   Launch live app →
                 </Link>
               </div>
@@ -220,7 +237,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="relative z-10 border-t border-line">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-xs text-fg-faint">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-fg-faint sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-6">
           <span>Tokenized RWA Fund · MVP</span>
           <span>Not an offer to sell securities. For demonstration only.</span>
         </div>

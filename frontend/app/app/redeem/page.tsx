@@ -93,9 +93,9 @@ export default function RedeemPage() {
   return (
     <div className="grid grid-cols-1 gap-8 pt-8 lg:grid-cols-[1fr_1fr]">
       <div className="card">
-        <div className="flex items-baseline justify-between">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h1 className="display text-3xl text-fg">Redeem</h1>
-          <span className="chip">holdings {fmtToken(userTokens)} FFT</span>
+          <span className="chip text-[10px]">holdings {fmtToken(userTokens)} FFT</span>
         </div>
 
         <p className="mt-2 text-sm text-fg-muted">
@@ -103,23 +103,24 @@ export default function RedeemPage() {
         </p>
 
         <div
-          className={`mt-4 flex items-center gap-2 rounded-lg border px-3 py-2.5 text-xs ${
+          className={`mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border px-3 py-2.5 text-xs ${
             inPathB
               ? "border-gold/30 bg-gold/[0.06] text-gold"
               : "border-gain/30 bg-gain-soft text-gain"
           }`}
         >
-          <span className="chip-dot bg-current" />
-          <span className="font-semibold">
-            {inPathB
-              ? `Path B · ${Number(discountBps) / 100}% discount`
-              : "Path A · redeem at NAV"}
+          <span className="flex items-center gap-2">
+            <span className="chip-dot bg-current" />
+            <span className="font-semibold">
+              {inPathB
+                ? `Path B · ${Number(discountBps) / 100}% discount`
+                : "Path A · redeem at NAV"}
+            </span>
           </span>
-          <span className="text-fg-subtle">·</span>
           <span className="text-fg-muted">
             {inPathB
-              ? "Market-maker-funded buyback"
-              : "Source Fund has sold the underlying"}
+              ? "Market-maker buyback"
+              : "Source Fund sold the underlying"}
           </span>
         </div>
 
@@ -132,7 +133,7 @@ export default function RedeemPage() {
               placeholder="0"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="input display !text-4xl !py-5 pr-20 tabular"
+              className="input display !text-3xl sm:!text-4xl !py-4 sm:!py-5 pr-20 tabular"
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-fg-muted">
               FFT

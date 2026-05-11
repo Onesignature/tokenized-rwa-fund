@@ -37,14 +37,14 @@ export function NavHero() {
       />
 
       <div className="relative grid grid-cols-1 lg:grid-cols-[1.2fr_1fr]">
-        <div className="p-8 lg:p-10">
-          <div className="flex items-center gap-2">
+        <div className="p-5 sm:p-8 lg:p-10">
+          <div className="flex flex-wrap items-center gap-x-2">
             <span className="kbd-label text-gold">Live NAV</span>
             <span className="kbd-label text-fg-faint">· updated {lastUpdate}</span>
           </div>
 
-          <div className="mt-4 flex items-baseline gap-4">
-            <div className="display text-[88px] leading-none text-fg">
+          <div className="mt-3 flex items-baseline gap-4 sm:mt-4">
+            <div className="display text-[56px] leading-none text-fg sm:text-[72px] lg:text-[88px]">
               <span className="text-fg-muted">$</span>
               <span>{fmtNav(nav)}</span>
             </div>
@@ -69,7 +69,7 @@ export function NavHero() {
             </div>
           )}
 
-          <div className="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
+          <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3 sm:mt-10">
             <Stat label="Fund AUM" value={`$${fmtUsdc(aum)}`} sub="supply × NAV" />
             <Stat
               label="Token supply"
@@ -90,7 +90,7 @@ export function NavHero() {
         </div>
 
         <div className="relative border-t border-line lg:border-l lg:border-t-0">
-          <div className="p-6 lg:p-8">
+          <div className="p-5 sm:p-6 lg:p-8">
             <div className="flex items-center justify-between">
               <span className="kbd-label text-fg-subtle">NAV history</span>
               <span className="text-xs text-fg-faint">All updates since launch</span>

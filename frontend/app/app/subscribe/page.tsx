@@ -59,9 +59,9 @@ export default function SubscribePage() {
   return (
     <div className="grid grid-cols-1 gap-8 pt-8 lg:grid-cols-[1fr_1fr]">
       <div className={`card ${spotlight}`}>
-        <div className="flex items-baseline justify-between">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h1 className="display text-3xl text-fg">Subscribe</h1>
-          <span className="chip">
+          <span className="chip text-[10px]">
             min ${fmtUsdc(minSubscription)} · wallet ${fmtUsdc(userUsdc)}
           </span>
         </div>
@@ -79,26 +79,26 @@ export default function SubscribePage() {
               placeholder="0"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="input display !text-4xl !py-5 pr-20 tabular"
+              className="input display !text-3xl sm:!text-4xl !py-4 sm:!py-5 pr-20 tabular"
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-fg-muted">
               USDC
             </span>
           </div>
 
-          <div className="mt-2.5 grid grid-cols-5 gap-1.5">
+          <div className="mt-2.5 grid grid-cols-3 gap-1.5 sm:grid-cols-5">
             {[100, 1000, 10000, 100000].map((v) => (
               <button
                 key={v}
                 onClick={() => setAmount(v.toString())}
                 className="btn-quiet"
               >
-                ${v.toLocaleString()}
+                ${v >= 1000 ? `${v / 1000}k` : v}
               </button>
             ))}
             <button
               onClick={() => setAmount((Number(userUsdc) / 1e6).toString())}
-              className="btn-quiet"
+              className="btn-quiet col-span-3 sm:col-span-1"
             >
               Max
             </button>

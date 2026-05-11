@@ -21,7 +21,7 @@ export function TourGuide() {
     <div className="pointer-events-none fixed inset-0 z-50">
       {/* Card */}
       <div
-        className={`pointer-events-auto fixed bottom-6 right-6 w-[360px] max-w-[calc(100vw-2rem)] transition-all duration-300 ${
+        className={`pointer-events-auto fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)] transition-all duration-300 ${
           show ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
         }`}
       >
