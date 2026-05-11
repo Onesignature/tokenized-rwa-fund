@@ -1,0 +1,40 @@
+# Source briefs (private)
+brief.md
+deepbrief.md
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build artifacts
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+
+# Deployment artifacts
+contracts/deployments/*.json
+!contracts/deployments/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Memory (Claude internal)
+memory/
