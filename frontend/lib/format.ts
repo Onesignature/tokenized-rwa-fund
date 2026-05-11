@@ -17,7 +17,7 @@ export function fmtToken(value: bigint | undefined, fractionDigits = 4): string 
   if (value === undefined) return "—";
   const num = Number(formatUnits(value, TOKEN_DECIMALS));
   return num.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
+    minimumFractionDigits: Math.min(2, fractionDigits),
     maximumFractionDigits: fractionDigits,
   });
 }

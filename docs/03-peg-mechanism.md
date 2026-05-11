@@ -12,29 +12,22 @@ The peg mechanism is the set of forces that keep the trade price close to the pu
 
 Three mechanisms work together. Each is well-understood in the stablecoin and tokenized-fund industry.
 
-```
-                  ┌──────────────────────────────┐
-                  │  NAV ORACLE                  │
-                  │  Publishes Source Fund NAV   │
-                  │  on-chain (e.g. $1.75)       │
-                  └──────────────┬───────────────┘
-                                 │ feeds reference price
-                                 ▼
-       ┌─────────────────────────────────────────────────┐
-       │  SMART CONTRACTS (the peg engine)               │
-       │                                                 │
-       │   Mint tokens   ◄────  receive stablecoin at NAV│
-       │   Burn tokens   ────►  pay out stablecoin at NAV│
-       └─────────┬───────────────────────────┬───────────┘
-                 │                           │
-   mint when     │                           │  burn when
-   market >      │                           │  market <
-   NAV           ▼                           ▼  NAV
-       ┌─────────────────┐         ┌─────────────────┐
-       │  MARKET MAKER   │◄───────►│  OPEN MARKET    │
-       │  arbitrages     │         │  buyers/sellers │
-       │  any gap        │         │  trade tokens   │
-       └─────────────────┘         └─────────────────┘
+```mermaid
+flowchart TB
+    Oracle["🔮 <b>NAV ORACLE</b><br/><sub>publishes Source Fund NAV on-chain<br/>e.g. $1.75</sub>"]
+    Peg["⚙️ <b>SMART CONTRACTS</b> <i>(the peg engine)</i><br/><sub>mint tokens ← receive stablecoin at NAV<br/>burn tokens → pay out stablecoin at NAV</sub>"]
+    MM["🤝 <b>MARKET MAKER</b><br/><sub>arbitrages any gap</sub>"]
+    Market["📊 <b>OPEN MARKET</b><br/><sub>buyers / sellers trade tokens</sub>"]
+
+    Oracle -- "feeds reference price" --> Peg
+    Peg -- "mint when market &gt; NAV" --> MM
+    Peg -- "burn when market &lt; NAV" --> MM
+    MM <--> Market
+
+    classDef gold fill:#D4B370,stroke:#A37D34,color:#1A1006
+    classDef cream fill:#F4F1EA,stroke:#B0AEA5,color:#141413
+    class Peg gold
+    class Oracle,MM,Market cream
 ```
 
 ### Mechanism 1: the NAV oracle

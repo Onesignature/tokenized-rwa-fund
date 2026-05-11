@@ -1,6 +1,6 @@
 {
-  "network": "localhost",
-  "chainId": 31337,
+  "network": "not-deployed",
+  "chainId": 0,
   "contracts": {
     "MockUSDC": "0x0000000000000000000000000000000000000000",
     "KYCRegistry": "0x0000000000000000000000000000000000000000",

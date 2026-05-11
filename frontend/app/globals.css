@@ -2,51 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@rainbow-me/rainbowkit/styles.css";
-
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html, body {
-  background: #f8f7f4;
-  color: #1c1917;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #08080B;
+  color: #FAFAFA;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 20% -10%, rgba(212,179,112,0.06), transparent 45%),
+    radial-gradient(circle at 90% 0%, rgba(52,211,153,0.04), transparent 40%);
+  background-attachment: fixed;
 }
 
 * {
   box-sizing: border-box;
 }
 
+::selection {
+  background: rgba(212,179,112,0.3);
+  color: #FAFAFA;
+}
+
+/* ─── Components ─────────────────────────────────────────────── */
+
 .card {
-  @apply rounded-xl border border-ink-200 bg-white p-5 shadow-sm;
+  @apply rounded-2xl border border-line bg-bg-surface p-6;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.03),
+    0 8px 24px -12px rgba(0,0,0,0.5);
+}
+
+.card-raised {
+  @apply rounded-xl border border-line-strong bg-bg-raised p-4;
 }
 
 .btn {
-  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 select-none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-primary {
-  @apply btn bg-ink-900 text-white hover:bg-ink-700 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply btn;
+  background: linear-gradient(180deg, #E8D7A6 0%, #D4B370 100%);
+  color: #1A1006;
+  font-weight: 600;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.3) inset,
+    0 -1px 0 rgba(0,0,0,0.12) inset,
+    0 6px 16px -8px rgba(212,179,112,0.5);
+}
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #F2E2B5 0%, #DEC180 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.4) inset,
+    0 -1px 0 rgba(0,0,0,0.12) inset,
+    0 8px 22px -6px rgba(212,179,112,0.6);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn-primary:disabled {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.3);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .btn-secondary {
-  @apply btn bg-ink-100 text-ink-900 hover:bg-ink-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply btn border border-line bg-white/[0.03] text-fg hover:bg-white/[0.06] hover:border-line-strong disabled:opacity-40 disabled:cursor-not-allowed;
 }
 
-.label {
-  @apply text-xs font-medium uppercase tracking-wider text-ink-500;
+.btn-ghost {
+  @apply btn text-fg-muted hover:bg-white/[0.04] hover:text-fg disabled:opacity-40;
+}
+
+.btn-quiet {
+  @apply inline-flex items-center justify-center rounded-md border border-line bg-white/[0.02] px-2.5 py-1.5 text-xs font-medium text-fg-muted transition hover:bg-white/[0.06] hover:text-fg hover:border-line-strong disabled:opacity-40 disabled:cursor-not-allowed;
 }
 
 .input {
-  @apply w-full rounded-lg border border-ink-200 bg-white px-3 py-2 text-base focus:border-ink-500 focus:outline-none focus:ring-1 focus:ring-ink-500;
+  @apply w-full rounded-lg border border-line bg-bg-input px-3.5 py-2.5 text-base text-fg placeholder:text-fg-faint transition;
+  font-feature-settings: "tnum" 1, "cv11" 1;
+}
+.input:focus {
+  @apply border-gold/60 outline-none;
+  box-shadow: 0 0 0 3px rgba(212,179,112,0.12);
 }
 
-.stat-value {
-  @apply text-2xl font-semibold tabular-nums text-ink-900;
+/* Hide number-input spinner arrows everywhere */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
-.stat-label {
-  @apply text-xs font-medium uppercase tracking-wider text-ink-500;
+/* Tour spotlight — applied to components targeted by the current tour step */
+.tour-spotlight {
+  position: relative;
+  isolation: isolate;
+  animation: tour-pulse 2.5s ease-in-out infinite;
+  border-radius: 1rem;
+}
+.tour-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid rgba(212, 179, 112, 0.8);
+  border-radius: 1.25rem;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 4px rgba(212, 179, 112, 0.10),
+    0 0 30px rgba(212, 179, 112, 0.35);
+  animation: tour-glow 2.5s ease-in-out infinite;
+  z-index: 10;
+}
+@keyframes tour-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.005); }
+}
+@keyframes tour-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 4px rgba(212, 179, 112, 0.10),
+      0 0 30px rgba(212, 179, 112, 0.30);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px rgba(212, 179, 112, 0.18),
+      0 0 50px rgba(212, 179, 112, 0.5);
+  }
+}
+
+.kbd-label {
+  @apply text-[10px] font-semibold uppercase tracking-[0.12em] text-fg-subtle;
+}
+
+.tab-pill {
+  @apply rounded-md px-3 py-1.5 text-sm font-medium transition;
+}
+.tab-pill-active {
+  @apply tab-pill bg-white/[0.06] text-fg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)];
+}
+.tab-pill-inactive {
+  @apply tab-pill text-fg-subtle hover:bg-white/[0.03] hover:text-fg;
+}
+
+.divider {
+  @apply h-px w-full bg-line;
+}
+
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white/[0.02] px-2.5 py-1 text-[11px] font-medium text-fg-muted;
+}
+
+.chip-dot {
+  @apply inline-block h-1.5 w-1.5 rounded-full;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -0.02em;
 }

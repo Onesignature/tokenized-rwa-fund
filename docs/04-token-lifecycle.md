@@ -4,23 +4,17 @@ This doc walks through the full lifecycle of a single tokenized position with wo
 
 ## The four stages
 
-```
-  STAGE 1         STAGE 2          STAGE 3            STAGE 4
-  LAUNCH          EQUITY MOVES     EXIT               NEXT CYCLE
-  ──────          ────────────     ────               ──────────
+```mermaid
+flowchart LR
+    S1["<b>1. LAUNCH</b><br/><sub>$1M raised in stablecoin<br/>Feeder subscribes for Source units<br/>Tokens issued to investors</sub>"]
+    S2["<b>2. EQUITY MOVES</b><br/><sub>Listed price triples<br/>NAV marked up conservatively<br/>Token price tracks NAV</sub>"]
+    S3["<b>3. EXIT</b><br/><sub>Path A: sell equity, redeem at NAV<br/>or<br/>Path B: fresh raise + buyback at discount</sub>"]
+    S4["<b>4. NEXT CYCLE</b><br/><sub>Repeat with next underlying</sub>"]
 
-  $1M raised  ──► Listed price ──► Choose Path A  ──► Repeat with
-  in stablecoin   triples;         (sell equity,      next
-                  NAV marked up    redeem tokens)     underlying
-  Feeder fund     conservatively
-  subscribes                       OR
-  for Source      Token price
-  Fund units      tracks NAV       Path B
-                                   (fresh raise,
-  Tokens                           buyback at NAV
-  issued                           discount, Source
-  to investors                     Fund keeps the
-                                   equity)
+    S1 --> S2 --> S3 --> S4
+
+    classDef gold fill:#D4B370,stroke:#A37D34,color:#1A1006
+    class S1,S2,S3,S4 gold
 ```
 
 ## Stage 1: Launch and subscription
@@ -64,53 +58,38 @@ Eighteen months in, the listed equity reaches escape velocity: financial track r
 
 ### Path A: Equity sale
 
-```
-  1. Listed equity reaches escape velocity
-       │
-       ▼
-  2. Source Fund sells the position in the public market
-       │
-       ▼
-  3. Cell holdings convert to cash; NAV settles at realized value
-     (e.g. $4.00 per token)
-       │
-       ▼
-  4. Feeder fund announces token redemption at NAV
-       │
-       ▼
-  5. Investors send tokens to RedemptionManager, receive
-     stablecoin at NAV ($4.00 per token)
-       │
-       ▼
-  6. Tokens burned; cycle closed
+```mermaid
+flowchart TD
+    A1["1. Listed equity reaches escape velocity"]
+    A2["2. Source Fund sells the position in the public market"]
+    A3["3. Cell holdings convert to cash; NAV settles at realized value<br/><sub>e.g. $4.00 per token</sub>"]
+    A4["4. Feeder fund announces token redemption at NAV"]
+    A5["5. Investors send tokens, receive stablecoin at NAV<br/><sub>$4.00 per token</sub>"]
+    A6["6. Tokens burned · cycle closed"]
+
+    A1 --> A2 --> A3 --> A4 --> A5 --> A6
+
+    classDef green fill:#788C5D,stroke:#5A6B47,color:#FFFFFF
+    class A1,A2,A3,A4,A5,A6 green
 ```
 
 **Path A numbers.** Source Fund sells the position; cell NAV settles at $4.00 per token. The feeder fund's 1,000,000 tokens outstanding redeem at $4.00 each. An investor who bought at $1.00 receives $4.00 (4x return). An investor who bought at $1.75 receives $4.00 (2.3x return). Tokens are burned; the cycle closes.
 
 ### Path B: Fresh raise plus buyback
 
-```
-  1. Listed equity reaches escape velocity
-       │
-       ▼
-  2. Source Fund raises a fresh institutional round
-     at the new NAV (e.g. $4.00)
-       │
-       ▼
-  3. Some of the new capital funds the market maker
-     to buy back tokens at a small discount
-     (e.g. $3.80 per token, 5% discount to NAV)
-       │
-       ▼
-  4. Token holders receive stablecoin; tokens burned
-       │
-       ▼
-  5. The feeder fund's Source Fund units are passed
-     to the new institutional subscribers
-       │
-       ▼
-  6. Source Fund keeps the underlying equity, rides
-     the next leg in the public market
+```mermaid
+flowchart TD
+    B1["1. Listed equity reaches escape velocity"]
+    B2["2. Source Fund raises a fresh institutional round<br/><sub>at the new NAV, e.g. $4.00</sub>"]
+    B3["3. Some of the new capital funds the market maker<br/>to buy back tokens at a discount<br/><sub>e.g. $3.80 per token · 5% discount to NAV</sub>"]
+    B4["4. Token holders receive stablecoin · tokens burned"]
+    B5["5. Feeder fund's Source Fund units pass<br/>to the new institutional subscribers"]
+    B6["6. Source Fund keeps the underlying · rides the next leg"]
+
+    B1 --> B2 --> B3 --> B4 --> B5 --> B6
+
+    classDef gold fill:#D4B370,stroke:#A37D34,color:#1A1006
+    class B1,B2,B3,B4,B5,B6 gold
 ```
 
 **Path B numbers.** Source Fund keeps the equity but raises a fresh $4M institutional round at NAV of $4.00. Some of that fresh capital is used to buy back the existing token supply at $3.80 per token (a 5% discount to NAV). Token holders receive stablecoin; tokens burned; the feeder fund's units in the Source Fund are passed to the new institutional subscribers.

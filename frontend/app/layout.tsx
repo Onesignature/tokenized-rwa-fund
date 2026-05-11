@@ -1,12 +1,30 @@
 import type { Metadata } from "next";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 import { Providers } from "./providers";
-import { Header } from "@/components/Header";
+
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+const display = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+  display: "swap",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Tokenized RWA Fund",
+  title: "Tokenized RWA Fund — stablecoin-denominated tokens against off-chain hedge fund units",
   description:
-    "A tokenized feeder fund that issues stablecoin-denominated tokens against off-chain hedge fund units.",
+    "A tokenized feeder fund. Investors send stablecoin and receive fund tokens whose value tracks the underlying hedge fund's NAV.",
 };
 
 export default function RootLayout({
@@ -15,11 +33,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html
+      lang="en"
+      className={`${sans.variable} ${display.variable} ${mono.variable}`}
+    >
+      <body className="font-sans">
         <Providers>
-          <Header />
-          <main className="mx-auto max-w-6xl px-4 pb-20">{children}</main>
+          <div className="min-h-screen">{children}</div>
         </Providers>
       </body>
     </html>

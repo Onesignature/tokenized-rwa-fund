@@ -1,6 +1,6 @@
 /**
  * Minimal ABIs for the contracts the frontend interacts with.
- * Only includes the functions actually used in the UI to keep this file small.
+ * Only includes the functions / events actually used in the UI.
  */
 
 export const erc20Abi = [
@@ -23,6 +23,14 @@ export const kycRegistryAbi = [
   { type: "function", name: "isKycd", stateMutability: "view", inputs: [{ name: "account", type: "address" }], outputs: [{ type: "bool" }] },
   { type: "function", name: "setKycStatus", stateMutability: "nonpayable", inputs: [{ name: "account", type: "address" }, { name: "kycd", type: "bool" }], outputs: [] },
   { type: "function", name: "owner", stateMutability: "view", inputs: [], outputs: [{ type: "address" }] },
+  {
+    type: "event",
+    name: "KycStatusChanged",
+    inputs: [
+      { name: "account", type: "address", indexed: true },
+      { name: "kycd", type: "bool", indexed: false },
+    ],
+  },
 ] as const;
 
 export const navOracleAbi = [
@@ -31,6 +39,16 @@ export const navOracleAbi = [
   { type: "function", name: "updater", stateMutability: "view", inputs: [], outputs: [{ type: "address" }] },
   { type: "function", name: "lastUpdatedAt", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
   { type: "function", name: "owner", stateMutability: "view", inputs: [], outputs: [{ type: "address" }] },
+  {
+    type: "event",
+    name: "NavUpdated",
+    inputs: [
+      { name: "oldNav", type: "uint256", indexed: false },
+      { name: "newNav", type: "uint256", indexed: false },
+      { name: "updater", type: "address", indexed: true },
+      { name: "timestamp", type: "uint256", indexed: false },
+    ],
+  },
 ] as const;
 
 export const subscriptionManagerAbi = [
@@ -38,6 +56,16 @@ export const subscriptionManagerAbi = [
   { type: "function", name: "previewSubscribe", stateMutability: "view", inputs: [{ name: "usdcAmount", type: "uint256" }], outputs: [{ type: "uint256" }] },
   { type: "function", name: "minSubscription", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
   { type: "function", name: "paused", stateMutability: "view", inputs: [], outputs: [{ type: "bool" }] },
+  {
+    type: "event",
+    name: "Subscribed",
+    inputs: [
+      { name: "subscriber", type: "address", indexed: true },
+      { name: "usdcIn", type: "uint256", indexed: false },
+      { name: "tokensOut", type: "uint256", indexed: false },
+      { name: "navAtSubscription", type: "uint256", indexed: false },
+    ],
+  },
 ] as const;
 
 export const redemptionManagerAbi = [
@@ -47,6 +75,17 @@ export const redemptionManagerAbi = [
   { type: "function", name: "setDiscountBps", stateMutability: "nonpayable", inputs: [{ name: "newBps", type: "uint256" }], outputs: [] },
   { type: "function", name: "paused", stateMutability: "view", inputs: [], outputs: [{ type: "bool" }] },
   { type: "function", name: "owner", stateMutability: "view", inputs: [], outputs: [{ type: "address" }] },
+  {
+    type: "event",
+    name: "Redeemed",
+    inputs: [
+      { name: "redeemer", type: "address", indexed: true },
+      { name: "tokensIn", type: "uint256", indexed: false },
+      { name: "usdcOut", type: "uint256", indexed: false },
+      { name: "navAtRedemption", type: "uint256", indexed: false },
+      { name: "discountBpsAtRedemption", type: "uint256", indexed: false },
+    ],
+  },
 ] as const;
 
 export const treasuryAbi = [
